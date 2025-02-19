@@ -16,13 +16,18 @@ function setup(){
 async function getProducts() {
     try{
         const response = await fetch(API_URL);
+        if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+
         const {data} = await response.json();
         
+
         data.forEach(item => {
             const template = itemTemplate({
             title: item.title,
-            imageURL: item.image.url, 
-            imageAlt: item.image.alt, 
+            imageURL: item.image?.url, //? > object is null > expression evaluates to undefined instead of error
+            imageAlt: item.image?.alt, //? > object is not null -> proceeds to access the url property
             description: item.description, 
             price: item.price, 
             id: item.id,
@@ -39,11 +44,14 @@ async function getProducts() {
 
 //FUNCTION - CREATING TEMPLATES FOR THE ITEMS
 function itemTemplate({
-    title, imageURL, imageAlt, description, CURRENCY, price, id
+    title, imageURL, imageAlt, description, price, id
 }) {
     return `
     <article class="item-details">
-        <div class="item-image">${imageURL} alt="${imageAlt}"</div>
+        <div class="item-image">
+            <img src="${imageURL}" alt="${imageAlt}">
+        </div>
+
         <div class="item-info">
             <h4 class="item-title">${title}</h4>
             <p class="item-description">${description}</p>
@@ -56,7 +64,8 @@ function itemTemplate({
 }
 
 
-export function createHTML(template){
+//FUNCTION - 
+function createHTML(template){
     const parser = new DOMParser();
     const parsedDocument = parser.parseFromString(template, "text/html");
     return parsedDocument.body.firstChild;
