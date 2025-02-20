@@ -280,6 +280,7 @@ h2 {
 
 .item-actions button:hover {
   background: #FCA311; /* Orange hover */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 /* Footer */

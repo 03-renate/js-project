@@ -24,8 +24,20 @@
     </header>
 
     <main>
+      <!-- TITLE + SORT BY/FILTER BY -->
       <section>
         <h2>Our products</h2>
+        <form action=""> Sort By:
+          <select name="sort-by" id="js-sort-by">
+            <option value="rec">Recommended</option>
+            <option value="asc">Lowest price</option>
+            <option value="desc">Highest price</option>
+          </select>
+        </form>
+      </section>
+
+      <!-- PRODUCT LIST -->
+      <section>
         <div id="js-products"></div>
       </section>
     </main>
