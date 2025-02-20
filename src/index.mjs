@@ -75,6 +75,7 @@ function itemTemplate({ title, imageURL, imageAlt, description, price, id }) {
 sortByElement.addEventListener("change", event => {
     const val = event.target.value;
 
+    //decided to use switch => easier to read than chaining if statement
     switch (val) {
         case "asc": //sorting products by price => high to low
             products.sort((a, b) => a.price - b.price);
