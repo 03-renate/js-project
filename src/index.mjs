@@ -5,6 +5,7 @@ const containerElement = document.querySelector("#js-products");
 const sortByElement = document.querySelector("#js-sort-by");
 let products = [];
 
+
 // CHECK IF containerElement EXIST IN THE DOM
 if (!containerElement || !sortByElement) { //if these elements do not exist in the DOM, it will bum out
     console.error("JS cannot run");
@@ -43,7 +44,6 @@ function renderProducts(items) {
             title: item.title,
             imageURL: item.image?.url,
             imageAlt: item.image?.alt,
-            description: item.description,
             price: item.price,
             id: item.id,
         });
@@ -54,22 +54,28 @@ function renderProducts(items) {
 }
 
 // FUNCTION - CREATING TEMPLATES FOR THE ITEMS
-function itemTemplate({ title, imageURL, imageAlt, description, price, id }) {
+function itemTemplate({ title, imageURL, imageAlt, price, id }) {
     return `
     <article class="item-details">
         <div class="item-image">
             <img src="${imageURL}" alt="${imageAlt}">
         </div>
+
         <div class="item-info">
             <h4 class="item-title">${title}</h4>
-            <p class="item-description">${description}</p>
             <div class="item-price">${price} ${CURRENCY}</div>
-            <div class="item-actions" id="js-addToCart-btn-${id}">
-                <button>Add to Cart</button>
+
+
+            <div class="item-actions">
+                <a href="/src/item.html?id=${id}" class="view-details-btn">View Details</a>
+                <button class="add-to-cart-btn" data-id="${id}">
+                    <i class="fa-solid fa-cart-shopping"></i>
+                </button>
             </div>
         </div>
     </article>`;
 }
+
 
 // EVENT LISTENER - SORTING PRODUCTS
 sortByElement.addEventListener("change", event => {
