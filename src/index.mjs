@@ -68,7 +68,7 @@ function itemTemplate({ title, imageURL, imageAlt, price, id }) {
 
             <div class="item-actions">
                 <a href="/src/item.html?id=${id}" class="view-details-btn">View Details</a>
-                <button class="add-to-cart-btn" data-id="${id}">
+                <button class="add-to-cart-btn">
                     <i class="fa-solid fa-cart-shopping"></i>
                 </button>
             </div>

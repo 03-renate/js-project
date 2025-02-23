@@ -1,97 +1,76 @@
 import { createHTML, clearNode } from "./utils.mjs";
 import { API_URL, CURRENCY } from "./constants.mjs";
 
-// Wait for the DOM to load before executing the code
-document.addEventListener("DOMContentLoaded", async () => {
-    const itemDetailsContainer = document.querySelector("#js-item-details");
+const containerElement = document.querySelector("#js-item-details");
+let id = null;
 
-    // If the container doesn't exist, stop the script
-    if (!itemDetailsContainer) {
-        console.error("JS cannot run: #js-item-details container not found");
-        return;
+setup();
+
+function setup() {
+    if (!containerElement) {
+        console.error("JS cannot run");
+    } else {
+        const parameterString = window.location.search;
+        const searchParameters = new URLSearchParams(parameterString);
+        id = searchParameters.get("id");
+
+        fetchItemDetails(id); // Fetch the item details for the given id
     }
-
-    // Parse the query string to get URL parameters
-    const queryString = window.location.search;
-    const urlParams = new URLSearchParams(queryString);
-    const itemId = urlParams.get("id");
-
-    if (!itemId) {
-        console.error("No 'id' parameter found in the URL");
-        itemDetailsContainer.innerHTML = "<p>Item ID is missing from the URL.</p>";
-        return;
-    }
-
-    try {
-        // Fetch item details and render them
-        await fetchItemDetails(itemId, itemDetailsContainer);
-    } catch (error) {
-        console.error("Error fetching item details:", error);
-        itemDetailsContainer.innerHTML = "<p>Failed to load item details. Please try again later.</p>";
-    }
-});
+}
 
 // Fetch item details based on itemId
-async function fetchItemDetails(itemId, itemDetailsContainer) {
-    let url = `${API_URL}?id=${itemId}`;
-    
+async function fetchItemDetails(itemId) {
     try {
-        const response = await fetch(url);
-        
-        if (!response.ok) {
-            throw new Error(`Failed to fetch item details: ${response.status}`);
+        if (!itemId) {
+            throw new Error(`Failed to fetch item id`);
         }
 
+        const response = await fetch(`${API_URL}/${itemId}`);
         const { data } = await response.json();
 
-        if (!data || data.length === 0) {
-            console.error("Item not found");
-            itemDetailsContainer.innerHTML = "<p>Item not found. Please check the ID and try again.</p>";
-            return;
-        }
+        const template = detailsTemplate({
+            title: data.title,
+            imageURL: data.image?.url,
+            imageAlt: data.image?.alt,
+            price: data.price,
+            id: data.id,
+            description: data.description,
+            sizes: data.sizes
+        });
 
-        const item = data[0]; // Assuming data is an array with the item object at index 0
-        renderItemDetails(item, itemDetailsContainer);
+        const itemDetailElement = createHTML(template);
+        clearNode(containerElement);
+        containerElement.appendChild(itemDetailElement); // Display the product details in the container
 
     } catch (error) {
-        console.error("Error fetching item details:", error);
-        itemDetailsContainer.innerHTML = "<p>Failed to load item details. Please try again later.</p>";
+        console.error("Error fetching item details:", error?.message);
     }
 }
 
-// Function to render item details
-function renderItemDetails(item, itemDetailsContainer) {
-    clearNode(itemDetailsContainer);
-
-    const template = itemPage({
-        title: item.title,
-        imageURL: item.image?.url,
-        imageAlt: item.image?.alt,
-        price: item.price,
-        id: item.id,
-        gender: item.gender,
-        info: item.description,
-        size: item.sizes
-    });
-
-    const newElement = createHTML(template);
-    itemDetailsContainer.append(newElement);
-}
-
-// Helper function to generate HTML for item page
-function itemPage({ title, imageURL, imageAlt, price, id, gender, info, size }) {
+// FUNCTION - CREATING THE TEMPLATE FOR THE SINGLE ITEM
+function detailsTemplate({ title, imageURL, imageAlt, price, description, sizes }) {
     return `
     <article id="item-details-page" class="item-details">
         <div class="item-image">
             <img src="${imageURL}" alt="${imageAlt}">
         </div>
+
         <div class="item-info">
-            <h4 class="item-title">${title} | ${gender}</h4>
+            <h4 class="item-title">${title}</h4>
             <div class="item-price">${price} ${CURRENCY}</div>
-            <div class="item-info">${info}</div>
-            <div class="item-size">${size}</div>
+            <p class="item-description">${description}</p>
+
+            <form action="">
+                Size:
+                <select id="size" name="size">
+                ${sizes.map(size => `<option value="${size}">${size}</option>`).join('')}
+                </select>
+            </form>
+
             <div class="item-actions">
-                <button class="add-to-cart-btn" data-id="${id}">ADD TO CART</button>
+                <button class="add-to-cart-btn">
+                    ADD TO CART <i class="fa-solid fa-cart-shopping"></i>
+                </button>
             </div>
         </div>
     </article>`;
