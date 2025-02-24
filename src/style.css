@@ -162,6 +162,12 @@ main {
   padding: 0 var(--spacing-large);
 }
 
+#js-products img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
 /* ITEM DETAILS PAGE */
 #item-details-page {
   display: grid;
