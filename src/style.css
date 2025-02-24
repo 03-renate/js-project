@@ -119,10 +119,13 @@ nav {
 }
 
 #checkout-btn {
+  display: block;
   width: 100%;
   padding: var(--spacing-base);
   background-color: var(--color-primary);
   color: var(--color-light);
+  text-decoration: none;
+  text-align: center;
   border: none;
   border-radius: var(--border-radius);
   font-size: var(--font-size-base);
@@ -358,6 +361,86 @@ button:focus {
   outline-offset: 2px;
 }
 
+/* CHECKOUT PAGE */
+/* Checkout page */
+.checkout-container {
+  padding: var(--spacing-large);
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.checkout-container h2 {
+  font-size: var(--font-size-xl);
+  font-weight: bold;
+  color: var(--color-primary);
+  margin-bottom: var(--spacing-base);
+}
+
+.checkout-info {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--spacing-large);
+}
+
+.billing-details,
+.order-summary {
+  flex: 1;
+  background-color: var(--color-light);
+  padding: var(--spacing-base);
+  border-radius: var(--border-radius);
+  box-shadow: 0 4px 6px var(--color-shadow);
+}
+
+.billing-details h3,
+.order-summary h3 {
+  font-size: var(--font-size-medium);
+  font-weight: bold;
+  color: var(--color-primary);
+  margin-bottom: var(--spacing-small);
+}
+
+.billing-details label {
+  display: block;
+  margin-bottom: var(--spacing-small);
+  font-weight: 600;
+}
+
+.billing-details input {
+  width: 100%;
+  padding: var(--spacing-small);
+  margin-bottom: var(--spacing-medium);
+  border: 1px solid #ddd;
+  border-radius: var(--border-radius);
+}
+
+.billing-details button {
+  width: 100%;
+  padding: var(--spacing-base);
+  background-color: var(--color-primary);
+  color: var(--color-light);
+  border: none;
+  border-radius: var(--border-radius);
+  font-size: var(--font-size-base);
+  cursor: pointer;
+  transition: background-color var(--transition);
+}
+
+.billing-details button:hover {
+  background-color: var(--color-accent);
+}
+
+.order-summary {
+  display: flex;
+  flex-direction: column;
+}
+
+.order-summary p {
+  font-size: var(--font-size-medium);
+  font-weight: bold;
+  margin-top: var(--spacing-medium);
+}
+
+
 /* RESPONSIVE DESIGN */
 @media (max-width: 1024px) {
   #js-products {
@@ -384,5 +467,9 @@ button:focus {
 
   .cart-header {
     padding: var(--spacing-medium);
+  }
+
+  .checkout-info {
+    flex-direction: column;
   }
 }
