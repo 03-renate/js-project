@@ -430,14 +430,34 @@ button:focus {
 }
 
 .order-summary {
-  display: flex;
-  flex-direction: column;
+  display: block;
+  border: 1px solid #ddd;
+  padding: 1rem;
+  border-radius: 8px;
+  background: #f9f9f9;
 }
 
-.order-summary p {
-  font-size: var(--font-size-medium);
+.order-item {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+}
+
+.order-item-details {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.order-item-price {
   font-weight: bold;
-  margin-top: var(--spacing-medium);
+}
+
+#js-order-total {
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-top: 1rem;
+  text-align: right;
 }
 
 

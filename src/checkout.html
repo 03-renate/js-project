@@ -6,6 +6,7 @@
   <title>Checkout - Urban Jackets</title>
   <link rel="stylesheet" href="/src/style.css">
   <script src="https://kit.fontawesome.com/49c1127b94.js" crossorigin="anonymous"></script>
+  <script type="module" src="/src/checkout.mjs" defer></script>
 </head>
 
 <body>
@@ -21,7 +22,7 @@
 
       <div class="checkout-info">
         <div class="billing-details">
-          <form id="checkout-form">
+          <form id="js-checkout-form">
             <label for="name">Full Name</label>
             <input type="text" id="name" name="name" required>
 
@@ -46,10 +47,10 @@
 
         <div class="order-summary">
           <h3>Order Summary</h3>
-          <div id="order-items">
+          <div id="js-order-items">
             <!-- Cart items will be dynamically inserted here -->
           </div>
-          <p id="order-total">Total: $0.00</p>
+          <p id="js-order-total">Total: $0.00</p>
         </div>
       </div>
     </section>
@@ -58,7 +59,5 @@
   <footer>
     <p>&copy; 2025 Urban Jackets MadeByStudent</p>
   </footer>
-
-  <script type="module" src="/src/checkout.js" defer></script>
 </body>
 </html>
