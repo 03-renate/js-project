@@ -1,5 +1,6 @@
 import { createHTML, clearNode } from "./utils.mjs";
 import { API_URL, CURRENCY } from "./constants.mjs";
+import { addToCart } from "./cart.mjs";
 
 const containerElement = document.querySelector("#js-item-details");
 let id = null;
@@ -42,6 +43,16 @@ async function fetchItemDetails(itemId) {
         clearNode(containerElement);
         containerElement.appendChild(itemDetailElement); // Display the product details in the container
 
+
+        document.querySelector(".add-to-cart-btn").addEventListener("click", function() {
+            addToCart({
+                id: data.id,
+                imageUrl: data.image?.url,
+                price: data.price,
+                title: data.title
+            });
+        });
+
     } catch (error) {
         console.error("Error fetching item details:", error?.message);
     }
@@ -69,7 +80,7 @@ function detailsTemplate({ title, imageURL, imageAlt, price, description, sizes 
 
             <div class="item-actions">
                 <button class="add-to-cart-btn">
-                    ADD TO CART <i class="fa-solid fa-cart-shopping"></i>
+                    Add To Cart</i>
                 </button>
             </div>
         </div>

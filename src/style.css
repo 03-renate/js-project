@@ -1,4 +1,3 @@
-/* CSS Variables for Consistency and Maintainability */
 :root {
   --color-primary: #14213D;
   --color-accent: #FCA311;
@@ -24,7 +23,7 @@
   --focus-outline-color: #ff8c00; /* Custom focus outline color */
 }
 
-/* General Reset */
+
 * {
   margin: 0;
   padding: 0;
@@ -39,7 +38,7 @@ body {
   line-height: 1.5;
 }
 
-/* Header Styles */
+/* HEADER */
 nav {
   height: 64px;
   width: 100%;
@@ -62,7 +61,7 @@ nav {
   font-weight: 600;
 }
 
-/* Sidebar Styles */
+/* CART SIDEBAR */
 #cart-sidebar {
   position: fixed;
   top: 0;
@@ -80,6 +79,10 @@ nav {
 
 #cart-sidebar.open {
   right: 0;
+}
+
+#js-cart-icon {
+  cursor: pointer;
 }
 
 .cart-header {
@@ -103,7 +106,7 @@ nav {
   cursor: pointer;
 }
 
-/* Cart Footer */
+/* CART FOOTER */
 .cart-footer {
   padding: var(--spacing-large);
   border-top: 1px solid #ddd;
@@ -131,7 +134,7 @@ nav {
   background-color: var(--color-accent);
 }
 
-/* Main Content & Product Cards */
+/* MAIN & TITLE */
 main {
   padding: var(--spacing-large) 0;
   margin-top: 64px;
@@ -147,6 +150,8 @@ main {
   color: var(--color-primary);
 }
 
+
+/* ITEM/PRODUCT CARDS */
 #js-products {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -154,7 +159,7 @@ main {
   padding: 0 var(--spacing-large);
 }
 
-/* Item Details Page Styling */
+/* ITEM DETAILS PAGE */
 #item-details-page {
   display: grid;
   place-self: center;
@@ -179,18 +184,17 @@ main {
   justify-content: center;
   align-items: center;
   width: 100%;
-  max-width: 400px; /* Limit max width for better control */
-  margin: 0 auto; /* Center the image */
+  max-width: 400px;
+  margin: 0 auto;
 }
 
 .item-image img {
-  width: auto;  /* Make image responsive */
-  max-width: 300px;  /* Set a max-width to keep it smaller */
+  width: auto;
+  max-width: 300px;
   height: auto;
   object-fit: cover;
 }
 
-/* Adjust the item-info padding to balance the content */
 .item-info {
   padding: var(--spacing-base);
   display: flex;
@@ -210,7 +214,7 @@ main {
   color: var(--color-accent);
 }
 
-/* Footer */
+/* FOOTER */
 footer {
   display: flex;
   justify-content: center;
@@ -223,7 +227,6 @@ footer p {
   font-size: var(--font-size-small);
 }
 
-/* Button Styles (Shared across buttons) */
 button,
 a.button {
   display: inline-flex;
@@ -260,7 +263,7 @@ a.button:disabled {
   cursor: not-allowed;
 }
 
-/* Close Cart Button */
+/* CLOSE CART */
 .cart-header button {
   color: var(--color-primary);
   font-size: var(--font-size-large);
@@ -268,7 +271,7 @@ a.button:disabled {
   transition: transform var(--transition);
 }
 
-/* Add to Cart and Remove from Cart Buttons */
+/* ADD QUANTITY TO CART + REMOVE QUANTITY FROM CART */
 .add-item-btn,
 .remove-item-btn {
   background-color: var(--color-accent);
@@ -285,7 +288,7 @@ a.button:disabled {
   transform: translateY(-2px);
 }
 
-/* View Details Button */
+/* VIEW DETAILS */
 .view-details-btn {
   background-color: var(--color-primary);
   color: var(--color-light);
@@ -301,7 +304,7 @@ a.button:disabled {
   transform: translateY(-3px);
 }
 
-/* Cart Items Section */
+/* CART ITEMS */
 .cart-items {
   flex: 1;
   padding: var(--spacing-large);
@@ -349,14 +352,13 @@ a.button:disabled {
   color: #ff1a1a;
 }
 
-/* Accessibility Enhancements */
 a:focus,
 button:focus {
   outline: 3px solid var(--focus-outline-color);
   outline-offset: 2px;
 }
 
-/* Responsive Design */
+/* RESPONSIVE DESIGN */
 @media (max-width: 1024px) {
   #js-products {
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));

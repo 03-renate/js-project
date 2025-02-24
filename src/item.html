@@ -7,19 +7,38 @@
   <link rel="stylesheet" href="/src/style.css">
   <script src="https://kit.fontawesome.com/49c1127b94.js" crossorigin="anonymous"></script>
   <script type="module" src="/src/item.mjs" defer></script>
+  <script type="module" src="/src/cart.mjs" defer></script>
 </head>
 
 
 <body>
   <header>
-    <nav>
-      <a href="/src/index.html" class="logo">Urban Jackets</a>
-      <div id="cart-icon">
-        <i class="fa-solid fa-basket-shopping"></i>
-        <span class="cart-item-count"></span>
-      </div>
-    </nav>
-  </header>
+    <header>
+      <nav>
+        <!-- LOGO -->
+        <a href="index.html" class="logo">Urban Jackets</a>
+  
+        <!-- Basket Icon -->
+        <div id="js-cart-icon">
+          <i class="fa-solid fa-basket-shopping"></i>
+          <span class="cart-item-count">0</span>
+        </div>
+      </nav>
+      
+      <!-- Sidebar -->
+      <aside id="cart-sidebar">
+        <div class="cart-header">
+          <h2>Your Basket</h2>
+          <button id="close-cart"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+        <div id="js-cart-items" class="cart-items"></div>
+        <div class="cart-footer">
+          <p class="cart-total">Total: $0.00</p>
+          <button id="checkout-btn">Go to Checkout</button>
+        </div>
+      </aside>
+        
+    </header>
 
   <main>
     <section id="js-item-details" class="item-details-page">
