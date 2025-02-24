@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Order Confirmation | Urban Jackets</title>
+  <link rel="stylesheet" href="/src/style.css">
+  <script src="https://kit.fontawesome.com/49c1127b94.js" crossorigin="anonymous"></script>
+  <script type="module" src="/src/confirmation.mjs" defer></script>
+</head>
+
+<body>
+  <header>
+    <nav>
+      <a href="index.html" class="logo">Urban Jackets</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="confirmation-container">
+        <article class="confirmation-card">
+          <h1>Thank You for Your Order!</h1>
+          <p>Your order has been confirmed.</p>
+          <p class="order-id">Order ID: <strong>#123456</strong></p>
+    
+          <div id="js-order-items"></div>
+          <div id="js-order-total"></div>
+    
+          <div class="shipping-info">
+            <h3>Shipping Information:</h3>
+            <p><strong>Address:</strong> 123 Main Street, City, Country</p>
+            <p><strong>Estimated Delivery:</strong> 3-5 business days</p>
+          </div>
+    
+          <div class="cta-buttons">
+            <button class="back-home">Back to Home</button>
+            <button class="track-order">Track Order</button>
+          </div>
+        </article>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Urban Jackets MadeByStudent</p>
+  </footer>
+</body>
+</html>
