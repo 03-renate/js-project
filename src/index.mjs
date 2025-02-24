@@ -1,21 +1,21 @@
 import { createHTML, clearNode } from "./utils.mjs";
 import { API_URL, CURRENCY } from "./constants.mjs";
+import { addToCart } from "./cart.mjs";
 
 const containerElement = document.querySelector("#js-products");
 const sortByElement = document.querySelector("#js-sort-by");
 let products = [];
 
-
 // CHECK IF containerElement EXIST IN THE DOM
-if (!containerElement || !sortByElement) { //if these elements do not exist in the DOM, it will bum out
+if (!containerElement || !sortByElement) {
     console.error("JS cannot run");
 } else {
-    setup(); // if element exists, call SETUP() to proceed with initialization
+    setup();
 }
 
 // FUNCTION - INITIALIZE THE APPLICATION SETUP
 function setup() {
-    getProducts(); // calling GET PRODUCTS()
+    getProducts();
 }
 
 // FUNCTION - FETCHES AND DISPLAYS PRODUCTS
@@ -23,7 +23,7 @@ async function getProducts() {
     try {
         const response = await fetch(API_URL);
         if (!response.ok) {
-            throw new Error(`HTTP error! Status: ${response.status}`);
+            console.error(`JS can not run`);
         }
         const { data } = await response.json();
         products = data;
@@ -43,13 +43,23 @@ function renderProducts(items) {
         const template = itemTemplate({
             title: item.title,
             imageURL: item.image?.url,
-            imageAlt: item.image?.alt,
+            imageAlt: item.image?.alt || "Product image",
             price: item.price,
             id: item.id,
         });
 
         const newElement = createHTML(template);
         containerElement.append(newElement);
+
+        const btn = newElement.querySelector("button");
+        btn.addEventListener("click", () => {
+            addToCart({
+                id: item.id,
+                title: item.title,
+                imageUrl: item.image?.url,
+                price: item.price
+            });
+        });
     });
 }
 
@@ -65,7 +75,6 @@ function itemTemplate({ title, imageURL, imageAlt, price, id }) {
             <h4 class="item-title">${title}</h4>
             <div class="item-price">${price} ${CURRENCY}</div>
 
-
             <div class="item-actions">
                 <a href="/src/item.html?id=${id}" class="view-details-btn">View Details</a>
                 <button class="add-to-cart-btn">
@@ -76,21 +85,19 @@ function itemTemplate({ title, imageURL, imageAlt, price, id }) {
     </article>`;
 }
 
-
 // EVENT LISTENER - SORTING PRODUCTS
 sortByElement.addEventListener("change", event => {
     const val = event.target.value;
 
-    //decided to use switch => easier to read than chaining if statement
     switch (val) {
-        case "asc": //sorting products by price => high to low
+        case "asc": // sorting products by price => low to high
             products.sort((a, b) => a.price - b.price);
             break;
-        case "desc": //sorting products by price => low to high
+        case "desc": // sorting products by price => high to low
             products.sort((a, b) => b.price - a.price);
             break;
-        case "rec": //sorting products by recommendations => true to false
-            products.sort((a, b) => b.favorite - a.favorite); // 
+        case "rec": // sorting products by recommendations => true to false
+            products.sort((a, b) => b.favorite - a.favorite);
             break;
         default:
             console.warn(`Unknown sort option: ${val}`);
