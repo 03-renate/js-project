@@ -8,7 +8,7 @@ let products = [];
 
 // CHECK IF containerElement EXIST IN THE DOM
 if (!containerElement || !sortByElement) {
-    console.error("JS cannot run");
+    alert("Required elements are missing on this page. Please try again later.");
 } else {
     setup();
 }
@@ -23,7 +23,7 @@ async function getProducts() {
     try {
         const response = await fetch(API_URL);
         if (!response.ok) {
-            console.error(`JS can not run`);
+            alert("There was an error loading products. Please try again later.");
         }
         const { data } = await response.json();
         products = data;
@@ -31,7 +31,7 @@ async function getProducts() {
         products.sort((a, b) => a.price - b.price); // default sorting: low to high
         renderProducts(products);
     } catch (error) {
-        console.error("Failure", error?.message);
+        alert("There was an error loading products. Please try again later.", error?.message);
     }
 }
 

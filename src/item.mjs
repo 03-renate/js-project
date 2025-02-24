@@ -10,6 +10,7 @@ setup();
 function setup() {
     if (!containerElement) {
         console.error("JS cannot run");
+        alert("An issue occurred with loading the page. Please try again later.");
     } else {
         const parameterString = window.location.search;
         const searchParameters = new URLSearchParams(parameterString);

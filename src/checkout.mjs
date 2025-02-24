@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const cartItems = JSON.parse(localStorage.getItem("cart")) || [];
 
   if (!orderItemsElement || !orderTotalElement) {
-    console.error("Order summary elements are missing.");
+    alert("Order summary elements are missing. Please try again later.");
     return;
   }
 

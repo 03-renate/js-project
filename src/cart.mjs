@@ -25,7 +25,7 @@ function setup() {
     !cartTotalElement ||
     !cartItemCountElement
   ) {
-    console.error("JS cannot run.");
+    alert("Oops! Something went wrong while setting up the cart.");
     return;
   }
 

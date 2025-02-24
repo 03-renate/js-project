@@ -476,33 +476,35 @@ button:focus {
 }
 
 .confirmation-card {
-  background-color: #ffffff;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  padding: 2rem;
+  background-color: var(--color-light);
+  border-radius: var(--border-radius);
+  box-shadow: 0 4px 8px var(--color-shadow);
+  padding: var(--spacing-medium);
   max-width: 600px;
   width: 100%;
 }
 
 h1 {
   text-align: center;
-  color: #28a745;
+  color: var(--color-accent);
+  font-size: var(--font-size-xl);
 }
 
 h3 {
-  margin-top: 1rem;
-  color: #333;
+  margin-top: var(--spacing-small);
+  color: var(--color-primary);
+  font-size: var(--font-size-medium);
 }
 
 p, ul {
-  font-size: 1rem;
-  color: #555;
+  font-size: var(--font-size-base);
+  color: var(--color-text-muted);
 }
 
 .order-id {
-  font-size: 1.2rem;
+  font-size: var(--font-size-medium);
   font-weight: bold;
-  margin-top: 0.5rem;
+  margin-top: var(--spacing-small);
 }
 
 ul {
@@ -511,72 +513,44 @@ ul {
 }
 
 ul li {
-  margin-bottom: 0.5rem;
+  margin-bottom: var(--spacing-small);
 }
 
 .shipping-info p {
-  margin-top: 0.5rem;
+  margin-top: var(--spacing-small);
 }
 
+/* CONFIRMATION Buttons */
 .cta-buttons {
   display: flex;
   justify-content: space-between;
-  margin-top: 2rem;
+  margin-top: var(--spacing-large);
 }
 
-button {
-  padding: 10px 20px;
-  font-size: 1rem;
-  background-color: #007bff;
-  color: white;
+.cta-buttons a, .cta-buttons button {
+  padding: var(--spacing-small) var(--spacing-base);
+  font-size: var(--font-size-base);
+  background-color: var(--color-primary);
+  text-decoration: none;
+  color: var(--color-light);
   border: none;
-  border-radius: 5px;
+  border-radius: var(--border-radius);
   cursor: pointer;
-  transition: background-color 0.3s;
+  transition: background-color var(--transition), transform var(--transition);
 }
 
-button:hover {
-  background-color: #0056b3;
+.cta-buttons a {
+  display: block;
 }
 
-button:focus {
-  outline: none;
+.cta-buttons button {
+  display: inline-block;
 }
 
-/* Media Query for Small Screens (max-width: 768px) */
-@media (max-width: 768px) {
-  .confirmation-card {
-    padding: 1.5rem;
-  }
-
-  h1 {
-    font-size: 1.5rem;
-  }
-
-  h3, p {
-    font-size: 0.9rem;
-  }
-
-  .cta-buttons {
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .cta-buttons button {
-    width: 100%;
-    margin-bottom: 1rem;
-  }
+.cta-buttons a:hover, .cta-buttons button:hover {
+  background-color: var(--color-accent);
+  transform: translateY(-2px);
 }
-
-/* Media Query for Extra Small Screens (max-width: 480px) */
-@media (max-width: 480px) {
-  h1 {
-    font-size: 1.2rem;
-  }
-
-  
-}
-
 
 
 /* RESPONSIVE DESIGN */
@@ -618,5 +592,33 @@ button:focus {
   .cta-buttons button {
     font-size: 0.9rem;
     padding: 8px 15px;
+  }
+
+  .confirmation-card {
+    padding: var(--spacing-base);
+  }
+
+  h1 {
+    font-size: var(--font-size-large);
+  }
+
+  h3, p {
+    font-size: var(--font-size-small);
+  }
+
+  .cta-buttons {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .cta-buttons a, .cta-buttons button {
+    width: 100%;
+    margin-bottom: var(--spacing-small);
+  }
+}
+
+@media (max-width: 480px) {
+  h1 {
+    font-size: var(--font-size-medium);
   }
 }
