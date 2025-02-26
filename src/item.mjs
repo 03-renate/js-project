@@ -5,6 +5,8 @@ import { addToCart } from "./cart.mjs";
 const containerElement = document.querySelector("#js-item-details");
 let id = null;
 
+debugger;
+
 setup();
 
 function setup() {
@@ -26,6 +28,7 @@ async function fetchItemDetails(itemId) {
         if (!itemId) {
             throw new Error(`Failed to fetch item id`);
         }
+
 
         const response = await fetch(`${API_URL}/${itemId}`);
         const { data } = await response.json();
